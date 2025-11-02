@@ -1,6 +1,6 @@
 # Repro - Promesa resolve stack overflow
 
-This is the currently minimal repro for a stack overflow when using Promesa to resolve a promise returned by `(vscode/env.clipboard.readText)` in a VS Code extension.
+This is the currently minimal repro for a stack overflow when using [Promesa](https://github.com/funcool/promesa) to resolve a promise returned by `(vscode/env.clipboard.readText)` in a VS Code extension.
 
 The latest Promesa version where this does not occur is `10.0.594`. The issue appears starting from `11.0.664`.
 
