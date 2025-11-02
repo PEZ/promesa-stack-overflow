@@ -1,0 +1,48 @@
+{
+  "name": "repro",
+  "displayName": "Repro",
+  "description": "Reproducing a strange issue",
+  "version": "0.0.1",
+  "publisher": "betterthantomorrow",
+  "icon": "assets/extension-icon-128x128.png",
+  "engines": {
+    "vscode": ">=1.75.0",
+    "node": ">=20.18.0"
+  },
+  "enabledApiProposals": [
+    "extensionRuntime"
+  ],
+  "categories": [],
+  "keywords": [],
+  "activationEvents": [],
+  "main": "out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "repro.hello",
+        "category": "Repro",
+        "title": "Say Clipboard!"
+      }
+    ]
+  },
+  "scripts": {
+    "clean": "rimraf .cpcache .shadow-cljs/ out/",
+    "preclean": "npm install",
+    "watch": "clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,\"1.5.1\"},cider/cider-nrepl {:mvn/version,\"0.58.0\"}}}' -M -m nrepl.cmdline --middleware \"[cider.nrepl/cider-middleware shadow.cljs.devtools.server.nrepl/middleware]\"",
+    "compile": "npx shadow-cljs compile :extension :test-compile",
+    "precompile": "npm run clean",
+    "release": "npx shadow-cljs release :extension :test-compile",
+    "package": "npx vsce package --githubBranch master",
+    "vscode:prepublish": "npm run clean && npm run release"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.41"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.6.2",
+    "ovsx": "^0.10.6",
+    "rimraf": "6.1.0",
+    "shadow-cljs": "^3.2.1",
+    "source-map-support": "^0.5.21"
+  }
+}
