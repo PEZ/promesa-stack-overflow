@@ -1,6 +1,11 @@
 # Repro - Promesa resolve stack overflow
 
-This is the currently minimal repro for a stack overflow when using [Promesa](https://github.com/funcool/promesa) to resolve a promise returned by `(vscode/env.clipboard.readText)` in a VS Code extension.
+> [!NOTE]
+> **This is fixed on Promesa `master`**. [A new release to be cut soon](https://github.com/funcool/promesa/issues/165#issuecomment-3484332771). This project has been updated to use Git coordinates and `:git:sha "4c3917258c19fc547dd87d439e1cdb413cb1f9f2"`, and the issue is then no longer reproducible.
+
+## Original Repro
+
+This is a minimal repro for a stack overflow when using [Promesa](https://github.com/funcool/promesa) to resolve a promise returned by `(vscode/env.clipboard.readText)` in a VS Code extension.
 
 The latest Promesa version where this does not occur is `10.0.594`. The issue appears starting from `11.0.664`.
 
@@ -14,7 +19,7 @@ The code reproducing the issue is in [src/repro/extension.cljs](src/repro/extens
     (vscode/window.showInformationMessage (str "clipboard contains: " text))))
 ```
 
-## Steps to Reproduce
+### Steps to Reproduce
 
 1. Clone this repository
 2. `npm install`
